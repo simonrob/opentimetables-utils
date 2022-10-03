@@ -1,0 +1,367 @@
+{
+  "ViewOptions": {
+    "Days": [
+      {
+        "Name": "Monday",
+        "DayOfWeek": 1,
+        "IsDefault": true
+      },
+      {
+        "Name": "Tuesday",
+        "DayOfWeek": 2,
+        "IsDefault": true
+      },
+      {
+        "Name": "Wednesday",
+        "DayOfWeek": 3,
+        "IsDefault": true
+      },
+      {
+        "Name": "Thursday",
+        "DayOfWeek": 4,
+        "IsDefault": true
+      },
+      {
+        "Name": "Friday",
+        "DayOfWeek": 5,
+        "IsDefault": true
+      },
+      {
+        "Name": "",
+        "DayOfWeek": 6,
+        "IsDefault": false
+      },
+      {
+        "Name": "",
+        "DayOfWeek": 0,
+        "IsDefault": false
+      }
+    ],
+    "Weeks": [
+      {
+        "WeekNumber": 1,
+        "WeekLabel": "Week 1",
+        "FirstDayInWeek": "2022-09-26T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 2,
+        "WeekLabel": "Week 2",
+        "FirstDayInWeek": "2022-10-03T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 3,
+        "WeekLabel": "Week 3",
+        "FirstDayInWeek": "2022-10-10T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 4,
+        "WeekLabel": "Week 4",
+        "FirstDayInWeek": "2022-10-17T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 5,
+        "WeekLabel": "Week 5",
+        "FirstDayInWeek": "2022-10-24T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 6,
+        "WeekLabel": "Week 6",
+        "FirstDayInWeek": "2022-10-31T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 7,
+        "WeekLabel": "Week 7",
+        "FirstDayInWeek": "2022-11-07T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 8,
+        "WeekLabel": "Week 8",
+        "FirstDayInWeek": "2022-11-14T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 9,
+        "WeekLabel": "Week 9",
+        "FirstDayInWeek": "2022-11-21T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 10,
+        "WeekLabel": "Week 10",
+        "FirstDayInWeek": "2022-11-28T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 11,
+        "WeekLabel": "Week 11",
+        "FirstDayInWeek": "2022-12-05T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 12,
+        "WeekLabel": "Week 12",
+        "FirstDayInWeek": "2022-12-12T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 13,
+        "WeekLabel": "Week 13",
+        "FirstDayInWeek": "2022-12-19T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 14,
+        "WeekLabel": "Week 14",
+        "FirstDayInWeek": "2022-12-26T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 15,
+        "WeekLabel": "Week 15",
+        "FirstDayInWeek": "2023-01-02T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 16,
+        "WeekLabel": "Week 16",
+        "FirstDayInWeek": "2023-01-09T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 17,
+        "WeekLabel": "Week 17",
+        "FirstDayInWeek": "2023-01-16T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 18,
+        "WeekLabel": "Week 18",
+        "FirstDayInWeek": "2023-01-23T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 19,
+        "WeekLabel": "Week 19",
+        "FirstDayInWeek": "2023-01-30T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 20,
+        "WeekLabel": "Week 20",
+        "FirstDayInWeek": "2023-02-06T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 21,
+        "WeekLabel": "Week 21",
+        "FirstDayInWeek": "2023-02-13T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 22,
+        "WeekLabel": "Week 22",
+        "FirstDayInWeek": "2023-02-20T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 23,
+        "WeekLabel": "Week 23",
+        "FirstDayInWeek": "2023-02-27T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 24,
+        "WeekLabel": "Week 24",
+        "FirstDayInWeek": "2023-03-06T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 25,
+        "WeekLabel": "Week 25",
+        "FirstDayInWeek": "2023-03-13T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 26,
+        "WeekLabel": "Week 26",
+        "FirstDayInWeek": "2023-03-20T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 27,
+        "WeekLabel": "Week 27",
+        "FirstDayInWeek": "2023-03-27T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 28,
+        "WeekLabel": "Week 28",
+        "FirstDayInWeek": "2023-03-03T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 29,
+        "WeekLabel": "Week 29",
+        "FirstDayInWeek": "2023-04-10T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 30,
+        "WeekLabel": "Week 30",
+        "FirstDayInWeek": "2023-04-17T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 31,
+        "WeekLabel": "Week 31",
+        "FirstDayInWeek": "2023-04-24T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 32,
+        "WeekLabel": "Week 32",
+        "FirstDayInWeek": "2023-05-01T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 33,
+        "WeekLabel": "Week 33",
+        "FirstDayInWeek": "2023-05-08T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 34,
+        "WeekLabel": "Week 34",
+        "FirstDayInWeek": "2023-05-15T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 35,
+        "WeekLabel": "Week 35",
+        "FirstDayInWeek": "2023-05-22T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 36,
+        "WeekLabel": "Week 36",
+        "FirstDayInWeek": "2023-05-29T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 37,
+        "WeekLabel": "Week 37",
+        "FirstDayInWeek": "2023-06-05T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 38,
+        "WeekLabel": "Week 38",
+        "FirstDayInWeek": "2023-06-12T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 39,
+        "WeekLabel": "Week 39",
+        "FirstDayInWeek": "2023-06-19T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 40,
+        "WeekLabel": "Week 40",
+        "FirstDayInWeek": "2023-06-26T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 41,
+        "WeekLabel": "Week 41",
+        "FirstDayInWeek": "2023-07-03T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 42,
+        "WeekLabel": "Week 42",
+        "FirstDayInWeek": "2023-07-10T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 43,
+        "WeekLabel": "Week 43",
+        "FirstDayInWeek": "2023-07-17T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 44,
+        "WeekLabel": "Week 44",
+        "FirstDayInWeek": "2023-07-24T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 45,
+        "WeekLabel": "Week 45",
+        "FirstDayInWeek": "2023-07-31T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 46,
+        "WeekLabel": "Week 46",
+        "FirstDayInWeek": "2023-08-07T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 47,
+        "WeekLabel": "Week 47",
+        "FirstDayInWeek": "2023-08-14T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 48,
+        "WeekLabel": "Week 48",
+        "FirstDayInWeek": "2023-08-21T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 49,
+        "WeekLabel": "Week 49",
+        "FirstDayInWeek": "2023-08-28T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 50,
+        "WeekLabel": "Week 50",
+        "FirstDayInWeek": "2023-09-04T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 51,
+        "WeekLabel": "Week 51",
+        "FirstDayInWeek": "2023-09-11T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 52,
+        "WeekLabel": "Week 52",
+        "FirstDayInWeek": "2023-09-18T00:00:00.000Z"
+      }
+    ],
+    "TimePeriods": [
+      {
+        "Description": "All Day",
+        "StartTime": "00:00",
+        "EndTime": "23:59",
+        "IsDefault": false
+      }
+    ],
+    "DatePeriods": [
+      {
+        "Description": "All Weeks",
+        "StartDateTime": "2022-09-26T00:00:00.000Z",
+        "EndDateTime": "2023-09-25T00:00:00.000Z",
+        "IsDefault": false,
+        "IsThisWeek": false,
+        "IsNextWeek": false,
+        "Type": null
+      }
+    ],
+    "LegendItems": [],
+    "InstitutionConfig": {},
+    "DateConfig": {
+      "FirstDayInWeek": 1,
+      "StartDate": "2022-09-26T00:00:00+00:00",
+      "EndDate": "2023-09-29T00:00:00+00:00"
+    },
+    "AllDays": [
+      {
+        "Name": "Monday",
+        "DayOfWeek": 1,
+        "IsDefault": true
+      },
+      {
+        "Name": "Tuesday",
+        "DayOfWeek": 2,
+        "IsDefault": true
+      },
+      {
+        "Name": "Wednesday",
+        "DayOfWeek": 3,
+        "IsDefault": true
+      },
+      {
+        "Name": "Thursday",
+        "DayOfWeek": 4,
+        "IsDefault": true
+      },
+      {
+        "Name": "Friday",
+        "DayOfWeek": 5,
+        "IsDefault": true
+      },
+      {
+        "Name": "",
+        "DayOfWeek": 6,
+        "IsDefault": false
+      },
+      {
+        "Name": "",
+        "DayOfWeek": 0,
+        "IsDefault": false
+      }
+    ]
+  },
+  "CategoryIdentities": []
+}

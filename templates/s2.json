@@ -1,0 +1,177 @@
+{
+  "ViewOptions": {
+    "Days": [
+      {
+        "Name": "Monday",
+        "DayOfWeek": 1,
+        "IsDefault": true
+      },
+      {
+        "Name": "Tuesday",
+        "DayOfWeek": 2,
+        "IsDefault": true
+      },
+      {
+        "Name": "Wednesday",
+        "DayOfWeek": 3,
+        "IsDefault": true
+      },
+      {
+        "Name": "Thursday",
+        "DayOfWeek": 4,
+        "IsDefault": true
+      },
+      {
+        "Name": "Friday",
+        "DayOfWeek": 5,
+        "IsDefault": true
+      },
+      {
+        "Name": "",
+        "DayOfWeek": 6,
+        "IsDefault": false
+      },
+      {
+        "Name": "",
+        "DayOfWeek": 0,
+        "IsDefault": false
+      }
+    ],
+    "Weeks": [
+      {
+        "WeekNumber": 19,
+        "WeekLabel": "Week 19",
+        "FirstDayInWeek": "2023-01-30T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 20,
+        "WeekLabel": "Week 20",
+        "FirstDayInWeek": "2023-02-06T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 21,
+        "WeekLabel": "Week 21",
+        "FirstDayInWeek": "2023-02-13T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 22,
+        "WeekLabel": "Week 22",
+        "FirstDayInWeek": "2023-02-20T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 23,
+        "WeekLabel": "Week 23",
+        "FirstDayInWeek": "2023-02-27T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 24,
+        "WeekLabel": "Week 24",
+        "FirstDayInWeek": "2023-03-06T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 25,
+        "WeekLabel": "Week 25",
+        "FirstDayInWeek": "2023-03-13T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 26,
+        "WeekLabel": "Week 26",
+        "FirstDayInWeek": "2023-03-20T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 27,
+        "WeekLabel": "Week 27",
+        "FirstDayInWeek": "2023-03-27T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 28,
+        "WeekLabel": "Week 28",
+        "FirstDayInWeek": "2023-03-03T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 29,
+        "WeekLabel": "Week 29",
+        "FirstDayInWeek": "2023-04-10T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 30,
+        "WeekLabel": "Week 30",
+        "FirstDayInWeek": "2023-04-17T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 31,
+        "WeekLabel": "Week 31",
+        "FirstDayInWeek": "2023-04-24T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 32,
+        "WeekLabel": "Week 32",
+        "FirstDayInWeek": "2023-05-01T00:00:00.000Z"
+      }
+    ],
+    "TimePeriods": [
+      {
+        "Description": "All Day",
+        "StartTime": "00:00",
+        "EndTime": "23:59",
+        "IsDefault": false
+      }
+    ],
+    "DatePeriods": [
+      {
+        "Description": "Semester 2",
+        "StartDateTime": "2023-01-26T00:00:00.000Z",
+        "EndDateTime": "2023-05-05T00:00:00.000Z",
+        "IsDefault": false,
+        "IsThisWeek": false,
+        "IsNextWeek": false,
+        "Type": null
+      }
+    ],
+    "LegendItems": [],
+    "InstitutionConfig": {},
+    "DateConfig": {
+      "FirstDayInWeek": 1,
+      "StartDate": "2022-09-26T00:00:00+00:00",
+      "EndDate": "2023-09-29T00:00:00+00:00"
+    },
+    "AllDays": [
+      {
+        "Name": "Monday",
+        "DayOfWeek": 1,
+        "IsDefault": true
+      },
+      {
+        "Name": "Tuesday",
+        "DayOfWeek": 2,
+        "IsDefault": true
+      },
+      {
+        "Name": "Wednesday",
+        "DayOfWeek": 3,
+        "IsDefault": true
+      },
+      {
+        "Name": "Thursday",
+        "DayOfWeek": 4,
+        "IsDefault": true
+      },
+      {
+        "Name": "Friday",
+        "DayOfWeek": 5,
+        "IsDefault": true
+      },
+      {
+        "Name": "",
+        "DayOfWeek": 6,
+        "IsDefault": false
+      },
+      {
+        "Name": "",
+        "DayOfWeek": 0,
+        "IsDefault": false
+      }
+    ]
+  },
+  "CategoryIdentities": []
+}

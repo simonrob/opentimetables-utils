@@ -1,0 +1,162 @@
+{
+  "ViewOptions": {
+    "Days": [
+      {
+        "Name": "Monday",
+        "DayOfWeek": 1,
+        "IsDefault": true
+      },
+      {
+        "Name": "Tuesday",
+        "DayOfWeek": 2,
+        "IsDefault": true
+      },
+      {
+        "Name": "Wednesday",
+        "DayOfWeek": 3,
+        "IsDefault": true
+      },
+      {
+        "Name": "Thursday",
+        "DayOfWeek": 4,
+        "IsDefault": true
+      },
+      {
+        "Name": "Friday",
+        "DayOfWeek": 5,
+        "IsDefault": true
+      },
+      {
+        "Name": "",
+        "DayOfWeek": 6,
+        "IsDefault": false
+      },
+      {
+        "Name": "",
+        "DayOfWeek": 0,
+        "IsDefault": false
+      }
+    ],
+    "Weeks": [
+      {
+        "WeekNumber": 2,
+        "WeekLabel": "Week 2",
+        "FirstDayInWeek": "2022-10-03T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 3,
+        "WeekLabel": "Week 3",
+        "FirstDayInWeek": "2022-10-10T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 4,
+        "WeekLabel": "Week 4",
+        "FirstDayInWeek": "2022-10-17T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 5,
+        "WeekLabel": "Week 5",
+        "FirstDayInWeek": "2022-10-24T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 6,
+        "WeekLabel": "Week 6",
+        "FirstDayInWeek": "2022-10-31T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 7,
+        "WeekLabel": "Week 7",
+        "FirstDayInWeek": "2022-11-07T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 8,
+        "WeekLabel": "Week 8",
+        "FirstDayInWeek": "2022-11-14T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 9,
+        "WeekLabel": "Week 9",
+        "FirstDayInWeek": "2022-11-21T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 10,
+        "WeekLabel": "Week 10",
+        "FirstDayInWeek": "2022-11-28T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 11,
+        "WeekLabel": "Week 11",
+        "FirstDayInWeek": "2022-12-05T00:00:00.000Z"
+      },
+      {
+        "WeekNumber": 12,
+        "WeekLabel": "Week 12",
+        "FirstDayInWeek": "2022-12-12T00:00:00.000Z"
+      }
+    ],
+    "TimePeriods": [
+      {
+        "Description": "All Day",
+        "StartTime": "00:00",
+        "EndTime": "23:59",
+        "IsDefault": false
+      }
+    ],
+    "DatePeriods": [
+      {
+        "Description": "Semester 1",
+        "StartDateTime": "2022-10-03T00:00:00.000Z",
+        "EndDateTime": "2022-12-16T00:00:00.000Z",
+        "IsDefault": false,
+        "IsThisWeek": false,
+        "IsNextWeek": false,
+        "Type": null
+      }
+    ],
+    "LegendItems": [],
+    "InstitutionConfig": {},
+    "DateConfig": {
+      "FirstDayInWeek": 1,
+      "StartDate": "2022-09-26T00:00:00+00:00",
+      "EndDate": "2023-09-29T00:00:00+00:00"
+    },
+    "AllDays": [
+      {
+        "Name": "Monday",
+        "DayOfWeek": 1,
+        "IsDefault": true
+      },
+      {
+        "Name": "Tuesday",
+        "DayOfWeek": 2,
+        "IsDefault": true
+      },
+      {
+        "Name": "Wednesday",
+        "DayOfWeek": 3,
+        "IsDefault": true
+      },
+      {
+        "Name": "Thursday",
+        "DayOfWeek": 4,
+        "IsDefault": true
+      },
+      {
+        "Name": "Friday",
+        "DayOfWeek": 5,
+        "IsDefault": true
+      },
+      {
+        "Name": "",
+        "DayOfWeek": 6,
+        "IsDefault": false
+      },
+      {
+        "Name": "",
+        "DayOfWeek": 0,
+        "IsDefault": false
+      }
+    ]
+  },
+  "CategoryIdentities": []
+}
