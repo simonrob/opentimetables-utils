@@ -1,0 +1,15 @@
+{
+  "ViewOptions": {
+    "Days": [
+      {
+        "DayOfWeek": 1
+      }
+    ],
+    "Weeks": [
+      {
+        "FirstDayInWeek": ""
+      }
+    ]
+},
+  "CategoryIdentities": []
+}
