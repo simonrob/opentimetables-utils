@@ -43,7 +43,7 @@ class OpenTimetablesICS:
         self.event_template = self.load_event_template(period)
 
     @staticmethod
-    def load_event_template(period='year'):
+    def load_event_template(period):
         """Timetable queries use a JSON template to specify the event period we are interested in"""
         print(f"Loading event period template `{period}`")
 
@@ -162,20 +162,19 @@ class OpenTimetablesICS:
                 timetable = await request.json()
         return timetable
 
-    async def generate_ical(self, module_codes, output_file):
+    async def generate_ical(self, module_codes, period, output_file):
         """Request timetables for the given list of module_codes, and save to output_file (or `view` in a browser)"""
-        calendar_title = f"Lectures for modules {', '.join(module_codes)}"
         calendar = icalendar.Calendar()
         calendar.add('version', '2.0')
         calendar.add('prodid', 'https://github.com/simonrob/opentimetables-utils')
         calendar.add('method', 'PUBLISH')
         calendar.add('last-modified', datetime.datetime.now())
-        calendar.add('x-wr-calname', calendar_title)
 
         async with aiohttp.ClientSession() as session:
             module_identifiers = await OpenTimetablesICS.get_identifiers(session, module_codes)
             print('Downloading timetables for', len(module_identifiers), 'matching modules')
 
+            event_total = 0
             for name, identifier in module_identifiers.items():
                 timetable = await OpenTimetablesICS.get_timetable(session, self.event_template.copy(), identifier)
                 if not timetable:
@@ -203,19 +202,31 @@ class OpenTimetablesICS:
                     calendar.add_component(event)
                     event_count += 1
 
+                event_total += event_count
                 print('\tAdded', event_count, 'scheduled activities for', name)
 
-            if output_file == 'view':
-                print('Opening ICS viewer with timetable output')
-                ical_bytes = io.BytesIO(calendar.to_ical()).getvalue()
-                encoded_ics = urllib.parse.quote(base64.b64encode(ical_bytes))
-                encoded_title = urllib.parse.quote(calendar_title)
-                webbrowser.open(f"https://simonrob.github.io/online-ics-feed-viewer/#file={encoded_ics}"
-                                f"&title={encoded_title}&hideinput=true&view=agendaWeek")
-            else:
-                print('Saving activities to', output_file)
-                with open(output_file, 'wb') as f:
-                    f.write(calendar.to_ical())
+        calendar_title = f"Lectures for modules {', '.join(module_codes)} ({event_total} events)"
+        calendar.add('x-wr-calname', calendar_title)
+
+        if output_file == 'view':
+            print('Opening ICS viewer with timetable output')
+            ical_bytes = io.BytesIO(calendar.to_ical()).getvalue()
+            encoded_ics = urllib.parse.quote(base64.b64encode(ical_bytes))
+            encoded_title = urllib.parse.quote(calendar_title)
+
+            view = 'agendaWeek' if period in ['week', 'next'] else 'agendaDay' if period == 'today' else 'month'
+            start_date = ''
+            if period == 'next':
+                today = datetime.date.today()
+                start_date = today - datetime.timedelta(days=today.weekday()) + datetime.timedelta(days=7)
+                start_date = f"&startdate={start_date.isoformat()}"
+
+            webbrowser.open(f"https://simonrob.github.io/online-ics-feed-viewer/#file={encoded_ics}"
+                            f"&title={encoded_title}&hideinput=true&view={view}{start_date}")
+        else:
+            print('Saving activities to', output_file)
+            with open(output_file, 'wb') as f:
+                f.write(calendar.to_ical())
 
 
 if __name__ == '__main__':
@@ -276,6 +287,6 @@ if __name__ == '__main__':
     print(f"Generating timetables for modules {args.modules}")
 
     try:
-        loop.run_until_complete(timetable_parser.generate_ical(args.modules, args.output_file))
+        loop.run_until_complete(timetable_parser.generate_ical(args.modules, args.period, args.output_file))
     except aiohttp.ClientConnectorError:
         print(f"\t{E_START}Error retrieving timetable information - is there an internet connection?{E_END}")
