@@ -35,10 +35,18 @@ Or use `paste` mode to (attempt to) automatically extract codes from a table of 
 python extractics.py -m paste -o view
 ```
 
+The `--cache` option is a one-time (per module catalogue update) operation to download and locally save module data, making it quicker to try broader queries. For example to show all Computer Science second-year modules this week:
+```shell
+python extractics.py --cache --modules CS-2 -p week -o view
+```
+
 You can configure the script's behaviour via the following optional arguments:
 - `-m` or `--modules`: A list of module codes separated by spaces. Use the magic value `paste` and the script will prompt you to paste a list then do (very basic) automatic module code matching from, e.g., a module selection table.
 - `-p` or `--period`: The time period to include in the output. Valid options are `year`, `s1` (i.e., Semester 1), `s2` (Semester 2), `today`, `week` (current week) or `next` (next week). Default: `year` (i.e., all known events).
-- `-o` or `--output-file`: The full path to an ICS file to save output, or the magic value `view` to open the ICS output in an [online viewer](https://simonrob.github.io/online-ics-feed-viewer/). Default: `timetable.ics` in the same directory as the script.
+- `-o` or `--output-file`: The full path to an ICS file to save output, or the magic value `view` to open the ICS output in an [online viewer](https://simonrob.github.io/online-ics-feed-viewer/).
+Default: `timetable.ics` in the same directory as the script.
+- `-c` or `--cache-modules`: Downloads and caches (for future use) the full list of available modules and identifiers into a local file, which speeds up future timetable requests.
+A cache file is automatically used if present; this option is only needed to trigger the initial cache generation, which will take some time.
 
 
 ## Limitations and caveats
@@ -46,8 +54,12 @@ Module code searching is actually a string match on the module/course title (as 
 So, including a module that shares a prefix with others will include all matches.
 Avoid this if needed by also appending the occurrence string (e.g., `CSCM69_A`).
 
+It would be relatively little extra effort to expand capabilities to cover both programme-specific module collections (which are somewhat error-prone) and venue timetables, but these actions are just about manageable in Open Timetables, so not currently implemented.
+If you would benefit from these features, please feel free to [open an issue](https://github.com/simonrob/opentimetables-utils/issues) (or submit a pull request).
+
 Calendar applications often import events from local ICS files rather than treating them as an updatable stream.
-If your timetabled events are likely to change, you may find it beneficial to set up the script to fetch events on a regular basis and store the resulting ICS file on a web server (or, e.g., Dropbox) that you can subscribe to.
+Events exported using this repository's tools are given persistent unique IDs, which should allow re-importing if schedules change.
+However, if your timetabled events are likely to change and your calendar viewer does not easily support re-importing, you may find it beneficial to set up the script to fetch events on a regular basis and store the resulting ICS file on a web server (or, e.g., Dropbox) that you can subscribe to.
 
 The default configuration in this repository is for Swansea University timetables and modules, but this can be configured by editing script global variables.
 Use a browser's developer tools to inspect and retrieve the correct configuration for your institution.

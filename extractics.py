@@ -25,7 +25,9 @@ BASE_URL = 'https://opentimetables.swan.ac.uk/'
 BASE_UUID = '525fe79b-73c3-4b5c-8186-83c652b3adcc'
 AUTHORISATION_HEADER = 'basic kR1n1RXYhF'
 
-OUTPUT_FILE = f"{os.path.dirname(os.path.realpath(__file__))}/timetable.ics"
+BASE_DIRECTORY = os.path.dirname(os.path.realpath(__file__))
+OUTPUT_FILE = f"{BASE_DIRECTORY}/timetable.ics"
+CACHE_FILE = f"{BASE_DIRECTORY}/module-cache.json"
 
 REQUEST_HEADERS = {
     'Content-Type': 'application/json; charset=utf-8',
@@ -46,7 +48,7 @@ class OpenTimetablesICS:
         print(f"Loading event period template `{period}`")
 
         period_name = 'week' if period == 'next' else period  # week templates share the same root
-        period_file = f"{os.path.dirname(os.path.realpath(__file__))}/templates/{period_name}.json"
+        period_file = f"{BASE_DIRECTORY}/templates/{period_name}.json"
 
         if not os.path.exists(period_file):
             print(f"\t{E_START}Error: time period template `{period}` not found; exiting{E_END}")
@@ -74,9 +76,54 @@ class OpenTimetablesICS:
         return period_template
 
     @staticmethod
+    async def get_modules(session, page):
+        """Get a single page of the module name/identity list"""
+        request_template = [{"Identity": "a6b2d3ea-c138-436d-9a43-d09a995f7269", "Values": ["null"]}]
+        modules = None
+        async with session.post(f"{BASE_URL}broker/api/CategoryTypes/{BASE_UUID}/Categories/Filter?pageNumber={page}",
+                                headers=REQUEST_HEADERS, json=request_template) as request:
+            if request.status == 200:
+                modules = await request.json()
+        return modules
+
+    @staticmethod
+    async def cache_modules():
+        """Request all pages of the module name/identity list (via get_modules()) and save to CACHE_FILE"""
+        async with aiohttp.ClientSession() as session:
+            first_page = await OpenTimetablesICS.get_modules(session, 1)
+            if not first_page:
+                print(f"\t{E_START}Warning: unable to load module list to cache; skipping task{E_END}")
+            cache = first_page['Results']
+
+            print('\tCaching module page 1', end='')
+            for page in range(1, first_page['TotalPages'] + 1):
+                print(f", {page}", end='', flush=True)
+                page_results = await OpenTimetablesICS.get_modules(session, page)
+                if page_results:
+                    cache.extend(page_results['Results'])
+                else:
+                    print(f"\n\t{E_START}Warning: failed to load and cache page {page} of module list{E_END}")
+
+            with open(CACHE_FILE, 'w', encoding='utf-8') as f:
+                json.dump(cache, f, ensure_ascii=False, indent=4)
+            print('\n\tCaching complete with', len(cache), 'results; expected:', first_page['Count'])
+
+    @staticmethod
     async def get_identifiers(session, module_codes):
-        """Each module has an identifier that can be retrieved through a search-type interface"""
+        """Each module has an identifier that can be retrieved through a search-type interface (or our cache)"""
         module_identifiers = {}
+
+        if os.path.exists(CACHE_FILE):
+            print('Loading module identifiers from cache file', CACHE_FILE)
+            with open(CACHE_FILE) as cached_identifiers:
+                cache = json.load(cached_identifiers)
+            for module_code in module_codes:
+                for module in cache:
+                    if module_code in module['Name']:
+                        # note: we don't break here to keep the same match behaviour as the online filter
+                        module_identifiers[module['Name']] = module['Identity']
+                        print('\tAdding module result', module['Name'], ':', module['Identity'])
+            return module_identifiers
 
         for module_code in module_codes:
             print(f"Searching for `{module_code}`:")
@@ -116,16 +163,21 @@ class OpenTimetablesICS:
         return timetable
 
     async def generate_ical(self, module_codes, output_file):
+        """Request timetables for the given list of module_codes, and save to output_file (or `view` in a browser)"""
+        calendar_title = f"Lectures for modules {', '.join(module_codes)}"
         calendar = icalendar.Calendar()
-        calendar.add('x-wr-calname', f"Lectures for modules {', '.join(module_codes)}")
+        calendar.add('version', '2.0')
+        calendar.add('prodid', 'https://github.com/simonrob/opentimetables-utils')
+        calendar.add('method', 'PUBLISH')
         calendar.add('last-modified', datetime.datetime.now())
+        calendar.add('x-wr-calname', calendar_title)
 
         async with aiohttp.ClientSession() as session:
-            module_identifiers = await self.get_identifiers(session, module_codes)
-            print('Downloading timetables for', len(module_identifiers), 'modules')
+            module_identifiers = await OpenTimetablesICS.get_identifiers(session, module_codes)
+            print('Downloading timetables for', len(module_identifiers), 'matching modules')
 
             for name, identifier in module_identifiers.items():
-                timetable = await self.get_timetable(session, self.event_template.copy(), identifier)
+                timetable = await OpenTimetablesICS.get_timetable(session, self.event_template.copy(), identifier)
                 if not timetable:
                     print(f"\t{E_START}Warning: timetable for module {name} not found at {BASE_URL}; skipping{E_END}")
                     continue
@@ -136,6 +188,7 @@ class OpenTimetablesICS:
                     event.add('summary', name)
                     event.add('dtstart', datetime.datetime.fromisoformat(opentimetables_event['StartDateTime']))
                     event.add('dtend', datetime.datetime.fromisoformat(opentimetables_event['EndDateTime']))
+                    event.add('uid', opentimetables_event['EventIdentity'])
 
                     description = f"Module code(s): {opentimetables_event['Name']}"
                     description += f"\nModule name: {name}\nEvent type: {opentimetables_event['EventType']}"
@@ -156,7 +209,9 @@ class OpenTimetablesICS:
                 print('Opening ICS viewer with timetable output')
                 ical_bytes = io.BytesIO(calendar.to_ical()).getvalue()
                 encoded_ics = urllib.parse.quote(base64.b64encode(ical_bytes))
-                webbrowser.open(f"https://simonrob.github.io/online-ics-feed-viewer/#file={encoded_ics}")
+                encoded_title = urllib.parse.quote(calendar_title)
+                webbrowser.open(f"https://simonrob.github.io/online-ics-feed-viewer/#file={encoded_ics}"
+                                f"&title={encoded_title}&hideinput=true&view=agendaWeek")
             else:
                 print('Saving activities to', output_file)
                 with open(output_file, 'wb') as f:
@@ -179,8 +234,24 @@ if __name__ == '__main__':
                                                                              f"open the ICS output in an online viewer "
                                                                              f". Default: `{OUTPUT_FILE}` in the same "
                                                                              f"directory as this script")
+    arg_parser.add_argument('-c', '--cache-modules', action='store_true', help=f"Downloads and caches (for future use) "
+                                                                               f"the full list of available modules "
+                                                                               f"and identifiers into {CACHE_FILE}")
     arg_parser.add_argument('--version', action='version', version=__version__)
     args = arg_parser.parse_args()
+
+    loop = asyncio.get_event_loop()
+    timetable_parser = OpenTimetablesICS(args.period)
+
+    if args.cache_modules:
+        if os.path.exists(CACHE_FILE):
+            print(f"Found existing cache file; skipping cache building (delete {CACHE_FILE} and re-run to regenerate)")
+        else:
+            try:
+                loop.run_until_complete(timetable_parser.cache_modules())
+            except aiohttp.ClientConnectorError:
+                print(f"\t{E_START}Error caching module information - is there an internet connection?{E_END}")
+                sys.exit(1)
 
     if args.modules == ['paste']:
         print('Please paste a list of module codes then press enter: ')
@@ -191,18 +262,18 @@ if __name__ == '__main__':
                 # try to match the various displays of module selections
                 match = re.match(r'^(?P<prefix>\w+\t)?(?P<code>[A-Z]+-?[A-Z]?\d+[A-Z]?)\t(?(prefix)\w|/)', line)
                 if match:
-                    pasted_modules.append(match.group('code'))
+                    matched_code = match.group('code')
+                    if matched_code not in pasted_modules:
+                        pasted_modules.append(matched_code)
             else:
                 break
         if pasted_modules:
-            args.modules = pasted_modules
+            args.modules = sorted(pasted_modules)
         else:
-            print(f"{E_START}Error: unable to detect any module codes in pasted input; exiting{E_END}")
+            print(f"\t{E_START}Error: unable to detect any module codes in pasted input; exiting{E_END}")
             sys.exit(1)
 
     print(f"Generating timetables for modules {args.modules}")
-    timetable_parser = OpenTimetablesICS(args.period)
-    loop = asyncio.get_event_loop()
 
     try:
         loop.run_until_complete(timetable_parser.generate_ical(args.modules, args.output_file))

@@ -132,4 +132,5 @@ dmypy.json
 versions
 .idea
 *.iml
+module-cache.json
 timetable.ics
