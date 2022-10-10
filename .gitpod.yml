@@ -1,4 +1,5 @@
 # allow running via, e.g., https://gitpod.io/#OT_MODULES=CSCM69,OT_PERIOD=year,OT_OUTPUT=view/https://github.com/simonrob/opentimetables-utils
 tasks:
   - init: pip install -r requirements.txt
-    command: python3 extractics.py
+    # when running via this method, the only available browser is `lynx`, and other options are too involved for this use-case (e.g., https://github.com/gitpod-io/gitpod/issues/127)
+    # command: python3 extractics.py

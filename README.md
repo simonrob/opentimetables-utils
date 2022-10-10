@@ -3,7 +3,7 @@
 But it can be very difficult to extract data from its timetable display, and time-consuming to repeatedly adjust its interface to request schedule details.
 This repository contains utilities to help make this task easier.
 
-You can [run the ExtractICS script online](https://simonrob.github.io/opentimetables-utils/) if needed (via Gitpod; account required).
+You can [run the `Extract ICS data` script online](https://simonrob.github.io/opentimetables-utils/) if needed (via Gitpod; account required).
 
 
 ## Disclaimer
