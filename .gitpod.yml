@@ -1,6 +1,4 @@
+# allow running via, e.g., https://gitpod.io/#OT_MODULES=CSCM69,OT_PERIOD=year,OT_OUTPUT=view/https://github.com/simonrob/opentimetables-utils
 tasks:
-  # allow running via, e.g., https://gitpod.io/#OT_MODULES=CSCM69,OT_PERIOD=year,OT_OUTPUT=view/https://github.com/simonrob/opentimetables-utils
-  - init: |
-      pip install -r requirements.txt
-  - command: |
-      python3 extractics.py
+  - init: pip install -r requirements.txt
+    command: python3 extractics.py
