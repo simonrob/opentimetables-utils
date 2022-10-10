@@ -234,17 +234,16 @@ if __name__ == '__main__':
     arg_parser.add_argument('-m', '--modules', nargs='+', help='[Required] A list of module codes separated by spaces, '
                                                                'or the magic value `paste` to be prompted to paste a '
                                                                'list from, e.g., a module selection table',
-                            required=True)
-    arg_parser.add_argument('-p', '--period', default='year', help='The time period to include in the output. Valid '
-                                                                   'options are `year`, `s1` (i.e., Semester 1), `s2` '
-                                                                   '(Semester 2), `today`, `week` (current week) or '
-                                                                   '`next` (next week). Default: `year` (i.e., all'
-                                                                   'known events')
-    arg_parser.add_argument('-o', '--output-file', default=OUTPUT_FILE, help=f"The full path to an ICS file to save "
-                                                                             f"output, or the magic value `view` to "
-                                                                             f"open the ICS output in an online viewer "
-                                                                             f". Default: `{OUTPUT_FILE}` in the same "
-                                                                             f"directory as this script")
+                            default=os.environ.get('OT_MODULES').split(' ') if os.environ.get('OT_MODULES') else [])
+    arg_parser.add_argument('-p', '--period', help='The time period to include in the output. Valid options are '
+                                                   '`year`, `s1` (i.e., Semester 1), `s2` (Semester 2), `today`, '
+                                                   '`week` (current week) or `next` (next week). Default: `year` '
+                                                   '(i.e., all known events',
+                            default=os.environ.get('OT_PERIOD') if os.environ.get('OT_PERIOD') else 'year')
+    arg_parser.add_argument('-o', '--output-file', help=f"The full path to an ICS file to save output, or the magic "
+                                                        f"value `view` to open the ICS output in an online viewer. "
+                                                        f"Default: `{OUTPUT_FILE}` in the same directory as the script",
+                            default=os.environ.get('OT_OUTPUT') if os.environ.get('OT_OUTPUT') else OUTPUT_FILE)
     arg_parser.add_argument('-c', '--cache-modules', action='store_true', help=f"Downloads and caches (for future use) "
                                                                                f"the full list of available modules "
                                                                                f"and identifiers into {CACHE_FILE}")
@@ -284,9 +283,12 @@ if __name__ == '__main__':
             print(f"\t{E_START}Error: unable to detect any module codes in pasted input; exiting{E_END}")
             sys.exit(1)
 
-    print(f"Generating timetables for modules {args.modules}")
+    if args.modules:
+        print(f"Generating timetables for modules {args.modules}")
 
-    try:
-        loop.run_until_complete(timetable_parser.generate_ical(args.modules, args.period, args.output_file))
-    except aiohttp.ClientConnectorError:
-        print(f"\t{E_START}Error retrieving timetable information - is there an internet connection?{E_END}")
+        try:
+            loop.run_until_complete(timetable_parser.generate_ical(args.modules, args.period, args.output_file))
+        except aiohttp.ClientConnectorError:
+            print(f"\t{E_START}Error retrieving timetable information - is there an internet connection?{E_END}")
+    else:
+        print('No module codes specified; exiting')

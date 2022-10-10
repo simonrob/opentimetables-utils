@@ -3,6 +3,9 @@
 But it can be very difficult to extract data from its timetable display, and time-consuming to repeatedly adjust its interface to request schedule details.
 This repository contains utilities to help make this task easier.
 
+You can [run the ExtractICS script online](https://simonrob.github.io/opentimetables-utils/) if needed (via Gitpod; account required).
+
+
 ## Disclaimer
 Double-check any outputs provided by these tools against the Open Timetables display to ensure accuracy.
 You are responsible for checking that results are correct.
@@ -16,7 +19,7 @@ python -m pip install -r requirements.txt
 ```
 
 ## Tools
-### extractics.py
+### Extract ICS data (extractics.py)
 Generate an ICS (iCalendar) file from Open Timetables for a given list of module codes:
 
 ```shell
@@ -47,6 +50,9 @@ You can configure the script's behaviour via the following optional arguments:
 Default: `timetable.ics` in the same directory as the script.
 - `-c` or `--cache-modules`: Downloads and caches (for future use) the full list of available modules and identifiers into a local file, which speeds up future timetable requests.
 A cache file is automatically used if present; this option is only needed to trigger the initial cache generation, which will take some time.
+
+The environment variables `OT_MODULES`, `OT_PERIOD` and `OT_OUTPUT` can be used to pass the `-m`, `-p` and `-o` options, respectively.
+This configuration method is provided to support running the script [online](https://simonrob.github.io/opentimetables-utils/).
 
 
 ## Limitations and caveats

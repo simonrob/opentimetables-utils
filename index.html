@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Timetables viewer</title>
+    <meta name="description" content="A showcase of Simple.css formatting in action and how to use it."/>
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.css">
+</head>
+<body>
+<header>
+    <h1>Swansea University Open Timetables viewer</h1>
+    <p>Enter your module codes into the box below and submit to open on <a href="https://www.gitpod.io/">Gitpod</a>
+        (account required). You may need to press enter after completes to confirm opening the timetable viewer.</p>
+    <p>The same disclaimer as the <a href="https://github.com/simonrob/opentimetables-utils">underlying script</a>
+        applies:</p>
+    <mark>Double-check any outputs provided by these tools against the Open Timetables display to ensure accuracy. You
+        are responsible for checking that results are correct.</mark>
+</header>
+<main>
+    <form onsubmit="window.location.replace('https://gitpod.io/#OT_MODULES=' + encodeURIComponent(document.forms[0].modules.value) + ',OT_PERIOD=' + document.forms[0].period.value + ',OT_OUTPUT=' + document.forms[0].output.value + '/https://github.com/simonrob/opentimetables-utils'); return false;">
+        <p>
+            <label>Module codes, separated by spaces</label>
+            <input type="text" name="modules"/>
+        </p>
+        <p>
+            <label for="period">Period to display (optional):</label>
+            <select name="period" id="period">
+                <option value="year">Year</option>
+                <option value="s1">Semester 1</option>
+                <option value="s2">Semester 2</option>
+                <option value="today">Today</option>
+                <option value="week">This week</option>
+                <option value="next">Next week</option>
+            </select>
+        </p>
+        <p>
+            <label for="output">Output type (optional):</label>
+            <select name="output" id="output">
+                <option value="view">Online viewer</option>
+                <option value="timetable.ics">ICS download (select `timetable.ics` from Gitpod file browser)</option>
+            </select>
+        </p>
+        <button>View timetable</button>
+    </form>
+</main>
+</body>
+</html>
