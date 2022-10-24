@@ -250,7 +250,6 @@ if __name__ == '__main__':
     arg_parser.add_argument('--version', action='version', version=__version__)
     args = arg_parser.parse_args()
 
-    loop = asyncio.get_event_loop()
     timetable_parser = OpenTimetablesICS(args.period)
 
     if args.cache_modules:
@@ -258,7 +257,7 @@ if __name__ == '__main__':
             print(f"Found existing cache file; skipping cache building (delete {CACHE_FILE} and re-run to regenerate)")
         else:
             try:
-                loop.run_until_complete(timetable_parser.cache_modules())
+                asyncio.run(timetable_parser.cache_modules())
             except aiohttp.ClientConnectorError:
                 print(f"\t{E_START}Error caching module information - is there an internet connection?{E_END}")
                 sys.exit(1)
@@ -287,7 +286,7 @@ if __name__ == '__main__':
         print(f"Generating timetables for modules {args.modules}")
 
         try:
-            loop.run_until_complete(timetable_parser.generate_ical(args.modules, args.period, args.output_file))
+            asyncio.run(timetable_parser.generate_ical(args.modules, args.period, args.output_file))
         except aiohttp.ClientConnectorError:
             print(f"\t{E_START}Error retrieving timetable information - is there an internet connection?{E_END}")
     else:

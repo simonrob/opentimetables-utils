@@ -18,6 +18,9 @@ After cloning or [downloading](https://github.com/simonrob/opentimetables-utils/
 python -m pip install -r requirements.txt
 ```
 
+Python 3.7 or later is required.
+
+
 ## Tools
 ### Extract ICS data (extractics.py)
 Generate an ICS (iCalendar) file from Open Timetables for a given list of module codes:
