@@ -1,3 +1,8 @@
+| Note: With the release of the updated Open Timetables service (now renamed to [My Timetable](https://mytimetable.swan.ac.uk/timetables)) that allows linking to specific activities and locations, and a personalised timetable view, this repository is no-longer required in most cases. |
+|-|
+
+---
+
 # Open Timetables Utilities
 [Open Timetables](http://opentimetables-help.azurewebsites.net/1.0/Content/Home.htm) allows institutions to easily provide public-facing timetables for all programmes.
 But it can be very difficult to extract data from its timetable display, and time-consuming to repeatedly adjust its interface to request schedule details.
